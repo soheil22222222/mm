@@ -228,6 +228,7 @@ function create_config( )
     "all",
     "leave_ban",
     "supergroup",
+    "supergroupfa",
     "whitelist",
     "msg_checks",
     "plugins",
