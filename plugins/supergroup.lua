@@ -39,7 +39,7 @@ local function check_member_super(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '✠سوپرگروه باموفقیت ثبت شد✠'
+	  local text = '✠سوپر گروه با موفقیت ثبت شد✠'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -63,7 +63,7 @@ local function check_member_superrem(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-	  local text = 'سوپرگروه از لیست حذف شد🚫'
+	  local text = '🚫سوپر گروه از لیست حذف شد🚫'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -104,13 +104,13 @@ end
 
 --Get and output info about supergroup
 local function callback_info(cb_extra, success, result)
-local title ="✠اطلاعات سوپرگروه: ["..result.title.."]\n\n"
-local admin_num = "✠تعداد ادمین گپ: "..result.admins_count.."\n"
-local user_num = "✠یورزنیم افراد: "..result.participants_count.."\n"
-local kicked_num = "✠تعداد افراد حذف شده: "..result.kicked_count.."\n"
-local channel_id = "✠ایدی: "..result.peer_id.."\n"
+local title ="📝اطلاعات سوپر گروه: ["..result.title.."]\n\n"
+local admin_num = "👤تعداد ادمین: "..result.admins_count.."\n"
+local user_num = "👤تعداد یوزرنیم: "..result.participants_count.."\n"
+local kicked_num = "👤تعداد افراد حذف شده: "..result.kicked_count.."\n"
+local channel_id = "👤ایدی: "..result.peer_id.."\n"
 if result.username then
-	channel_username = "یوزرنیم: @"..result.username
+	channel_username = "🚕یوزرنیم: @"..result.username
 else
 	channel_username = "@Hacker_Team"
 end
@@ -179,11 +179,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return 'لینک از قبل قفل بوده🔊'
+    return 'Link posting is already locked'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'لینک قفل شد🔐'
+    return 'Link posting has been locked'
   end
 end
 
@@ -193,11 +193,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return 'هشدار لینک قفل نشده🔊'
+    return 'Link posting is not locked'
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'لینک ازاد شد🔓'
+    return 'Link posting has been unlocked'
   end
 end
 
@@ -207,7 +207,7 @@ local function lock_group_all(msg, data, target)
   end
   local group_all_lock = data[tostring(target)]['settings']['all']
   if group_all_lock == 'yes' then
-    return 'تنظیمات کلی قفل شد🔒'
+    return 'all setting is already locked'
   else
     data[tostring(target)]['settings']['all'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -221,11 +221,11 @@ local function unlock_group_all(msg, data, target)
   end
   local group_all_lock = data[tostring(target)]['settings']['all']
   if group_all_lock == 'no' then
-    return 'هشدار تنظیمات کلی قفل نشده🔊'
+    return 'all setting is not locked'
   else
     data[tostring(target)]['settings']['all'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'تنظیمات کلی ازاد شد🔓'
+    return 'all setting has been unlocked'
   end
 end
 
@@ -263,11 +263,11 @@ local function lock_group_leave(msg, data, target)
   end
   local group_leave_lock = data[tostring(target)]['settings']['leave']
   if group_leave_lock == 'yes' then
-    return 'قفل لفت ازقبل فعال بود🔊'
+    return 'leave is already locked'
   else
     data[tostring(target)]['settings']['leave'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل لفت فعال شد🔐'
+    return 'leave has been locked'
   end
 end
 
@@ -277,11 +277,11 @@ local function unlock_group_leave(msg, data, target)
   end
   local group_leave_lock = data[tostring(target)]['settings']['leave']
   if group_leave_lock == 'no' then
-    return 'هشدار قفل لفت فعال نشده 🔊'
+    return 'leave is not locked'
   else
     data[tostring(target)]['settings']['leave'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل لفت بازشد🔓'
+    return 'leave has been unlocked'
   end
 end
 
@@ -319,11 +319,11 @@ local function lock_group_reply(msg, data, target)
   end
   local group_reply_lock = data[tostring(target)]['settings']['reply']
   if group_reply_lock == 'yes' then
-    return 'ریپلی از قبل قفل بود🔐'
+    return 'reply is already locked'
   else
     data[tostring(target)]['settings']['reply'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'ریپلی قفل شد🔒'
+    return 'reply has been locked'
   end
 end
 
@@ -333,11 +333,11 @@ local function unlock_group_reply(msg, data, target)
   end
   local group_reply_lock = data[tostring(target)]['settings']['reply']
   if group_reply_lock == 'no' then
-    return 'هشدار ریپلی قفل نشده🔊'
+    return 'reply is not locked'
   else
     data[tostring(target)]['settings']['reply'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل ریپلی بازشد🔓'
+    return 'reply has been unlocked'
   end
 end
 
@@ -347,11 +347,11 @@ local function lock_group_username(msg, data, target)
   end
   local group_username_lock = data[tostring(target)]['settings']['username']
   if group_username_lock == 'yes' then
-    return 'یوزرنیم قفل شد🔒'
+    return 'username is already locked'
   else
     data[tostring(target)]['settings']['username'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'یوزرنیم قفل شد🔐'
+    return 'username has been locked'
   end
 end
 
@@ -361,11 +361,11 @@ local function unlock_group_username(msg, data, target)
   end
   local group_username_lock = data[tostring(target)]['settings']['username']
   if group_username_lock == 'no' then
-    return 'هشدار یوزرنیم قفل نشده🔊'
+    return 'username is not locked'
   else
     data[tostring(target)]['settings']['username'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل یوزرنیم باز شد🔓'
+    return 'username has been unlocked'
   end
 end
 
@@ -403,11 +403,11 @@ local function lock_group_fosh(msg, data, target)
   end
   local group_fosh_lock = data[tostring(target)]['settings']['fosh']
   if group_fosh_lock == 'yes' then
-    return 'قفل فحش فعال شد🔒'
+    return 'fosh is already locked'
   else
     data[tostring(target)]['settings']['fosh'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل فحش فعال شد🔐'
+    return 'fosh has been locked'
   end
 end
 
@@ -417,11 +417,11 @@ local function unlock_group_fosh(msg, data, target)
   end
   local group_fosh_lock = data[tostring(target)]['settings']['fosh']
   if group_fosh_lock == 'no' then
-    return 'هشدار فحش قفل نشده 🔊'
+    return 'fosh is not locked'
   else
     data[tostring(target)]['settings']['fosh'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل فحش بار شد🔓'
+    return 'fosh has been unlocked'
   end
 end
 
@@ -431,11 +431,11 @@ local function lock_group_join(msg, data, target)
   end
   local group_join_lock = data[tostring(target)]['settings']['join']
   if group_join_lock == 'yes' then
-    return 'قفل جوین فعال شد🔒'
+    return 'join is already locked'
   else
     data[tostring(target)]['settings']['join'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل جوین ازقبل فعال بود🔐'
+    return 'join has been locked'
   end
 end
 
@@ -445,11 +445,11 @@ local function unlock_group_join(msg, data, target)
   end
   local group_join_lock = data[tostring(target)]['settings']['join']
   if group_join_lock == 'no' then
-    return 'هشدار قفل جوین فعال نیست🔊'
+    return 'join is not locked'
   else
     data[tostring(target)]['settings']['join'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل جوین ازاد شد🔓'
+    return 'join has been unlocked'
   end
 end
 
@@ -459,11 +459,11 @@ local function lock_group_fwd(msg, data, target)
   end
   local group_fwd_lock = data[tostring(target)]['settings']['fwd']
   if group_fwd_lock == 'yes' then
-    return 'قفل فرواد فعال شد🔒'
+    return 'fwd is already locked'
   else
     data[tostring(target)]['settings']['fwd'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل فرواد فعال شد🔐'
+    return 'fwd has been locked'
   end
 end
 
@@ -473,11 +473,11 @@ local function unlock_group_fwd(msg, data, target)
   end
   local group_fwd_lock = data[tostring(target)]['settings']['fwd']
   if group_fwd_lock == 'no' then
-    return 'هشدار فرواد قفل نشده🔊'
+    return 'fwd is not locked'
   else
     data[tostring(target)]['settings']['fwd'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل فرواد ازاد شد🔓'
+    return 'fwd has been unlocked'
   end
 end
 
@@ -487,11 +487,11 @@ local function lock_group_english(msg, data, target)
   end
   local group_english_lock = data[tostring(target)]['settings']['english']
   if group_english_lock == 'yes' then
-    return 'قفل انگلیسی فعال شد🔒'
+    return 'english is already locked'
   else
     data[tostring(target)]['settings']['english'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل انگلیسی فعال شد🔐'
+    return 'english has been locked'
   end
 end
 
@@ -501,11 +501,11 @@ local function unlock_group_english(msg, data, target)
   end
   local group_english_lock = data[tostring(target)]['settings']['english']
   if group_english_lock == 'no' then
-    return 'هشدار انگلیسی قفل نشده🔊'
+    return 'english is not locked'
   else
     data[tostring(target)]['settings']['english'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل انگلیسی ازاد شد🔓'
+    return 'english has been unlocked'
   end
 end
 
@@ -515,11 +515,11 @@ local function lock_group_emoji(msg, data, target)
   end
   local group_emoji_lock = data[tostring(target)]['settings']['emoji']
   if group_emoji_lock == 'yes' then
-    return 'فرستان اموجی قفل شد🔒'
+    return 'emoji is already locked'
   else
     data[tostring(target)]['settings']['emoji'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'فرستان اموجی قفل شد🔐'
+    return 'emoji has been locked'
   end
 end
 
@@ -529,11 +529,11 @@ local function unlock_group_emoji(msg, data, target)
   end
   local group_emoji_lock = data[tostring(target)]['settings']['emoji']
   if group_emoji_lock == 'no' then
-    return 'هشدار اموجی قفل نشده🔊'
+    return 'emoji is not locked'
   else
     data[tostring(target)]['settings']['emoji'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل اموجی ازاد شد🔓'
+    return 'emoji has been unlocked'
   end
 end
 
@@ -543,11 +543,11 @@ local function lock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['tag']
   if group_tag_lock == 'yes' then
-    return 'قفل تگ فعال شد🔒'
+    return 'tag is already locked'
   else
     data[tostring(target)]['settings']['tag'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل تگ فعال شد🔐'
+    return 'tag has been locked'
   end
 end
 
@@ -557,11 +557,11 @@ local function unlock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['tag']
   if group_tag_lock == 'no' then
-    return 'هشدار تگ قفل نشده🔊'
+    return 'tag is not locked'
   else
     data[tostring(target)]['settings']['tag'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل تگ ازاد شده🔓'
+    return 'tag has been unlocked'
   end
 end
 
@@ -584,15 +584,15 @@ local function lock_group_spam(msg, data, target)
     return
   end
   if not is_owner(msg) then
-    return "فقط صاحب"
+    return "Owners only!"
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return 'قفل اسپم سوپرگروه فعالشد🔒'
+    return 'SuperGroup spam is already locked'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل اسپم سوپرگروه فعال شد🔐'
+    return 'SuperGroup spam has been locked'
   end
 end
 
@@ -602,11 +602,11 @@ local function unlock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'no' then
-    return 'هشدار قفل اسپم فعال نمی باشد🔊'
+    return 'SuperGroup spam is not locked'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل اسپم ازاد شد🔓'
+    return 'SuperGroup spam has been unlocked'
   end
 end
 
@@ -616,11 +616,11 @@ local function lock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'قفل فلود فعال شد🔒'
+    return 'Flood is already locked'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل فلودفعال شد🔐'
+    return 'Flood has been locked'
   end
 end
 
@@ -630,11 +630,11 @@ local function unlock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return 'هشدار فلود قفل نیست🔊'
+    return 'Flood is not locked'
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل فلود ازاد شد🔓'
+    return 'Flood has been unlocked'
   end
 end
 
@@ -644,11 +644,11 @@ local function lock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return 'عربی قفل شد🔒'
+    return 'Arabic is already locked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'عربی قفل شد🔐'
+    return 'Arabic has been locked'
   end
 end
 
@@ -658,11 +658,11 @@ local function unlock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return 'هشدار عربی قفل نشده🔊'
+    return 'Arabic/Persian is already unlocked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل عربی بازشد🔓'
+    return 'Arabic/Persian has been unlocked'
   end
 end
 
@@ -673,12 +673,12 @@ local function lock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'yes' then
-    return 'قفل اعضا فعال شد🔒'
+    return 'SuperGroup members are already locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'قفل اعضا فعال شد🔐'
+  return 'SuperGroup members has been locked'
 end
 
 local function unlock_group_membermod(msg, data, target)
@@ -687,11 +687,11 @@ local function unlock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return 'هشدار اعضا قفل نیست🔊'
+    return 'SuperGroup members are not locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل اعضا ازاد شد🔓'
+    return 'SuperGroup members has been unlocked'
   end
 end
 
@@ -701,11 +701,11 @@ local function lock_group_rtl(msg, data, target)
   end
   local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
   if group_rtl_lock == 'yes' then
-    return 'فرستان ادرس قفل شد🔒'
+    return 'RTl is already locked'
   else
     data[tostring(target)]['settings']['lock_rtl'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل ادرس فعال شد🔐'
+    return 'RTL has been locked'
   end
 end
 
@@ -715,11 +715,11 @@ local function unlock_group_rtl(msg, data, target)
   end
   local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
   if group_rtl_lock == 'no' then
-    return 'هشدار قفل ادرس فعال نیست🔊'
+    return 'RTL is already unlocked'
   else
     data[tostring(target)]['settings']['lock_rtl'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل ادرس ازاد شد🔓'
+    return 'RTL has been unlocked'
   end
 end
 
@@ -757,11 +757,11 @@ local function lock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'yes' then
-    return 'فرستان استیکر قفل شد🔒'
+    return 'Sticker posting is already locked'
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل استیکر فعال شد🔐'
+    return 'Sticker posting has been locked'
   end
 end
 
@@ -771,11 +771,11 @@ local function unlock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'no' then
-    return 'هشدار استیکر قفل نیست🔊'
+    return 'Sticker posting is already unlocked'
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل استیکرباز شد🔓'
+    return 'Sticker posting has been unlocked'
   end
 end
 
@@ -785,11 +785,11 @@ local function lock_group_bots(msg, data, target)
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'yes' then
-    return 'قفل ربات فعال شد🔒'
+    return 'Bots protection is already enabled'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل ربات فعال شد🔐'
+    return 'Bots protection has been enabled'
   end
 end
 
@@ -799,11 +799,11 @@ local function unlock_group_bots(msg, data, target)
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'no' then
-    return 'هشدار قفل ربات فعال نیست🔊'
+    return 'Bots protection is already disabled'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل ربات ازادشد🔓'
+    return 'Bots protection has been disabled'
   end
 end
 
@@ -813,11 +813,11 @@ local function lock_group_contacts(msg, data, target)
   end
   local group_rtl_lock = data[tostring(target)]['settings']['lock_contacts']
   if group_contacts_lock == 'yes' then
-    return 'فرستان شماره قفل شد🔒'
+    return 'Contact posting is already locked'
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'فرستان شماره قفل شد🔐'
+    return 'Contact posting has been locked'
   end
 end
 
@@ -827,11 +827,11 @@ local function unlock_group_contacts(msg, data, target)
   end
   local group_contacts_lock = data[tostring(target)]['settings']['lock_contacts']
   if group_contacts_lock == 'no' then
-    return 'هشدار فرستان شماره قفل نشده🔊'
+    return 'Contact posting is already unlocked'
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل فرستان شماره بازشد🔓'
+    return 'Contact posting has been unlocked'
   end
 end
 
@@ -872,14 +872,14 @@ local function set_rulesmod(msg, data, target)
   local data_cat = 'rules'
   data[tostring(target)][data_cat] = rules
   save_data(_config.moderation.data, data)
-  return 'قوانین ثبت شد'
+  return 'SuperGroup rules set'
 end
 
 --'Get supergroup rules' function
 local function get_rules(msg, data)
   local data_cat = 'rules'
   if not data[tostring(msg.to.id)][data_cat] then
-    return 'قوانینی برای این سوپر گروه وجودندارد'
+    return 'No rules available.'
   end
   local rules = data[tostring(msg.to.id)][data_cat]
   local group_name = data[tostring(msg.to.id)]['settings']['set_name']
@@ -890,7 +890,7 @@ end
 --Set supergroup to public or not public function
 local function set_public_membermod(msg, data, target)
   if not is_momod(msg) then
-    return "😋"
+    return "For moderators only!"
   end
   local group_public_lock = data[tostring(target)]['settings']['public']
   local long_id = data[tostring(target)]['long_id']
@@ -899,7 +899,7 @@ local function set_public_membermod(msg, data, target)
 	save_data(_config.moderation.data, data)
   end
   if group_public_lock == 'yes' then
-    return 'حالت عمومی فعال شد'
+    return 'Group is already public'
   else
     data[tostring(target)]['settings']['public'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -1033,7 +1033,7 @@ function show_supergroup_settingsmod(msg, target)
   local gp_type = data[tostring(msg.to.id)]['group_type']
   
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات سوپرگروه:⬇️\n︿﹀︿﹀︿﹀︿﹀︿﹀︿﹀\n🔧Lock links : "..settings.lock_link.."\n\n🔧Lock contacts: "..settings.lock_contacts.."\n\n🔧Lock flood: "..settings.flood.."\n\n🔧Flood sensitivity : "..NUM_MSG_MAX.."\n\n🔧Lock spam: "..settings.lock_spam.."\n\n🔧Lock Arabic: "..settings.lock_arabic.."\n\n🔧Lock Member: "..settings.lock_member.."\n\n🔧Lock RTL: "..settings.lock_rtl.."\n\n🔧Lock Tgservice: "..settings.lock_tgservice.."\n\n🔧Lock sticker: "..settings.lock_sticker.."\n\n🔧Lock tag(#): "..settings.tag.."\n\n🔧Lock emoji: "..settings.emoji.."\n\n🔧Lock english: "..settings.english.."\n\n🔧Lock fwd(forward): "..settings.fwd.."\n\n🔧Lock reply: "..settings.reply.."\n\n🔧Lock join: "..settings.join.."\n\n🔧Lock username(@): "..settings.username.."\n\n🔧Lock media: "..settings.media.."\n\n🔧Lock fosh: "..settings.fosh.."\n\n🔧Lock leave: "..settings.leave.."\n\n🔧Lock bots: "..bots_protection.."\n\n🔧Lock operator: "..settings.operator.."\n︿﹀︿﹀︿﹀︿﹀︿﹀︿﹀\n\n⚙Easy Sweet&Faster Switch⚙:⬇️\n︿﹀︿﹀︿﹀︿﹀︿﹀\n🎭Switch Model Etehad: "..settings.etehad.."\n\n🎭Lock all: "..settings.all.."\n︿﹀︿﹀︿﹀︿﹀︿﹀\nℹ️درباره گروهℹ️:⬇️\n🎸﹀︿﹀︿﹀︿﹀︿﹀︿\n\n🎯group type: "..gp_type.."\n\n🎯Public: "..settings.public.."\n\n🎯Strict settings: "..settings.strict.."\n\n﹀︿﹀︿﹀︿﹀︿﹀︿﹀︿﹀︿﹀︿\n>>Channel:@Hacker_Team\n☞hackerBot☜"
+  local text = "____________________\n⚙SuperGroup settings⚙:⬇️\n____________________\n>Lock links : "..settings.lock_link.."\n>Lock contacts: "..settings.lock_contacts.."\n>Lock flood: "..settings.flood.."\n>Flood sensitivity : "..NUM_MSG_MAX.."\n>Lock spam: "..settings.lock_spam.."\n>Lock Arabic: "..settings.lock_arabic.."\n>Lock Member: "..settings.lock_member.."\n>Lock RTL: "..settings.lock_rtl.."\n>Lock Tgservice: "..settings.lock_tgservice.."\n>Lock sticker: "..settings.lock_sticker.."\n>Lock tag(#): "..settings.tag.."\n>Lock emoji: "..settings.emoji.."\n>Lock english: "..settings.english.."\n>Lock fwd(forward): "..settings.fwd.."\n>Lock reply: "..settings.reply.."\n>Lock join: "..settings.join.."\n>Lock username(@): "..settings.username.."\n>Lock media: "..settings.media.."\n>Lock fosh: "..settings.fosh.."\n>Lock leave: "..settings.leave.."\n>Lock bots: "..bots_protection.."\n>Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:⬇️\n____________________\n>Switch Model Etehad: "..settings.etehad.."\n>Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:⬇️\n____________________\n>group type: "..gp_type.."\n>Public: "..settings.public.."\n>Strict settings: "..settings.strict.."\n____________________\n>>bot version : v2.9<<\n>>>👑MeGa shield👑<<<\n>>@shieldTM<<"
   return text
 end
 
@@ -1097,7 +1097,7 @@ local function modlist(msg)
   local data = load_data(_config.moderation.data)
   local groups = "groups"
   if not data[tostring(groups)][tostring(msg.to.id)] then
-    return 'سوپر گروه اد شد'
+    return 'SuperGroup is not added.'
   end
   -- determine if table is empty
   if next(data[tostring(msg.to.id)]['moderators']) == nil then
@@ -1211,7 +1211,7 @@ function get_message_callback(extra, success, result)
 			if result.from.username then
 				text = "@"..result.from.username.." [ "..result.from.peer_id.." ] added as owner"
 			else
-				text = "[ "..result.from.peer_id.." ] صاحب گروه"
+				text = "[ "..result.from.peer_id.." ] added as owner"
 			end
 			send_large_msg(channel_id, text)
 		end
@@ -1735,8 +1735,8 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested ID for: @"..username)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
-				savelog(msg.to.id, name_log.." ["..msg.from.id.."] ایدی سوپرگروه")
-				return "✠نام شما: " ..string.gsub(msg.from.print_name, "_", " ").. "\n\n✠یوزرنیم شما: @"..(msg.from.username or '----').."\n\n✠ایدی شما: "..msg.from.id.."\n\n✠اسم سوپر گروه: " ..string.gsub(msg.to.print_name, "_", " ").. "\n\n✠ایدی سوپر گروه: "..msg.to.id.."\n@Hacker_Team
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
+				return "👤اسم شما: " ..string.gsub(msg.from.print_name, "_", " ").. "\n\n👤یوزرنیم شما: @"..(msg.from.username or '----').."\n\n👤ایدی شما: "..msg.from.id.."\n\n👥اسم سوپرگروه: " ..string.gsub(msg.to.print_name, "_", " ").. "\n\n👥ایدی سوپرگروه: "..msg.to.id
 			end
 		end
 
@@ -1751,7 +1751,7 @@ local function run(msg, matches)
 			local function callback_link (extra , success, result)
 			local receiver = get_receiver(msg)
 				if success == 0 then
-					send_large_msg(receiver, 'هشدار:\nشما نمی توانید لینک جدید بسازید میتوانیداز دستور  /setlink برای عوض کردن لینک خود استفاده کنید.')
+					send_large_msg(receiver, '*Error: Failed to retrieve link* \nReason: Not creator.\n\nIf you have the link, please use /setlink to set it')
 					data[tostring(msg.to.id)]['settings']['set_link'] = nil
 					save_data(_config.moderation.data, data)
 				else
@@ -1767,14 +1767,14 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return 'لطفالینک جدید را ارسال کنید'
+			return 'Please send the new group link now'
 		end
 
 		if msg.text then
 			if msg.text:match("^(https://telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_link'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_link'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "✽عملیات باموفقیت انجام شد✽"
+				return "New link set"
 			end
 		end
 
@@ -1784,10 +1784,10 @@ local function run(msg, matches)
 			end
 			local group_link = data[tostring(msg.to.id)]['settings']['set_link']
 			if not group_link then
-				return "شما هنوز لینکی نساختید شما میتوانید بادستور /newlink لینک جدید رابسازید"
+				return "Create a link using /newlink first!\n\nOr if I am not creator use /setlink to set your link"
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-			return "لینک سوپرگروه:\n"..group_link
+			return "Group link:\n"..group_link
 		end
 
 		if matches[1] == "invite" and is_sudo(msg) then
@@ -2084,7 +2084,7 @@ local function run(msg, matches)
 				local about_text = ' '
 				local data_cat = 'description'
 				if data[tostring(msg.to.id)][data_cat] == nil then
-					return 'توضیحاتی وجودندارد'
+					return 'About is not set'
 				end
 				data[tostring(msg.to.id)][data_cat] = nil
 				save_data(_config.moderation.data, data)
@@ -2628,7 +2628,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "برای دریافت دستورات سوپرگروه دستور /superhelp رابه پیوی بات ارسال کنید"
+			text = "Message /superhelp to @antispam_shield in private for SuperGroup help"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
